@@ -49,7 +49,17 @@ public class Controlador {
         veterinario.addListaConsultas(consulta);
         consulta.setVeterinario(veterinario);
     }
+    
+    public void recetarMedicamento(Medicamento medicamento, Consulta consulta){
+        for (Medicamento m : consulta.getListaMedicamentos()) {
+        if (m.getNombre().equalsIgnoreCase(medicamento.getNombre())) {
+            vista.errorRecetarMedicamento(medicamento, consulta);
+            return;
+        }
+    }
+        consulta.addListaMedicamento(medicamento);
+        medicamento.setConsulta(consulta);
     }
     
     
-}
+ }

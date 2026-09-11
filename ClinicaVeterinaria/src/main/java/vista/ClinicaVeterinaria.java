@@ -25,4 +25,10 @@ public class ClinicaVeterinaria {
     {
         System.out.println("El veterinario "+ veterinario.getNombre() + " ya esta atendiendo la consulta con id "+ consulta.getId());
     }
+    
+    public void errorRecetarMedicamento(Medicamento medicamento, Consulta consulta)
+    {
+        System.out.println("La consulta con id "+ consulta.getId() + " ya tiene el medicamento "+ medicamento.getNombre() + " recetado.");
+        System.out.println("Si deseas cambiar la dosis, usa su respectiva funcion.");
+    }
 }

@@ -16,6 +16,7 @@ public class Veterinario extends Persona {
     public Veterinario(int tarjetaProfesional, String nombre, int edad, String cedula, String direccion) {
         super(nombre, edad, cedula, direccion);
         this.tarjetaProfesional = tarjetaProfesional; 
+        listaConsultas = new ArrayList<>();
     }
 
     public ArrayList<Consulta> getListaConsultas() {

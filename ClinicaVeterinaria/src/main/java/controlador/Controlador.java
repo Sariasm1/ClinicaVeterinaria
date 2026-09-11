@@ -35,17 +35,40 @@ public class Controlador {
         Veterinario Juan = new Veterinario(10, "Juan", 35, "333", "Cartagena");
         
         // CONSULTA
-        Consulta consulta1 = new Consulta(1);
-        Consulta consulta2 = new Consulta(2);
+        Consulta consulta1 = new Consulta(50);
+        Consulta consulta2 = new Consulta(60);
         
-        // [ ASIGNACIÓN OBJETOS ] //
+        // MEDICAMENTOS
+        
+        
+        Medicamento amoxicilina = new Medicamento("Amoxicilina", 5);
+        Medicamento meloxicam = new Medicamento("Meloxicam", 2);
+        Medicamento omeprazol = new Medicamento("Omeprazol", 10);
+        
+        
+        // ------- [ ASIGNACIÓN OBJETOS ] ------- //
+        
+        //* MASCOTAS
         
         agregarMascotaAPropietario(gato, Santiago);
         agregarMascotaAPropietario(perro, Santiago);
         agregarMascotaAPropietario(gato, Daniel);
         agregarMascotaAPropietario(loro, Daniel);
         
-        // [ PROBAR CAMBIOS ] //
+        //* VETERINARIO
+        
+        asociarVeterinarioAConsulta(Juan, consulta1);
+        asociarVeterinarioAConsulta(Juan, consulta2);
+        
+        
+        // ------- [ PROBAR CAMBIOS ] ------- //
+        
+        //* Remover veterinario de consulta
+        removerVeterinarioDeConsulta(Juan, consulta1);
+        removerVeterinarioDeConsulta(Juan, consulta2);
+        
+        //* Remover veterinario de falsa consulta
+        removerVeterinarioDeConsulta(Juan, consulta1);
         
         //* Cambiar a mismo dueño
         cambiarPropietarioMascota(gato, Santiago);
@@ -57,6 +80,79 @@ public class Controlador {
         
         //* Remover mascota de falso dueño
         removerMascotaPropietario(gato, Santiago);
+        removerMascotaPropietario(loro, Daniel);
+        
+        //* Remover mascota de dueño real
+        removerMascotaPropietario(gato, Daniel);
+        removerMascotaPropietario(loro, Santiago);
+        
+        //* Agregar mascotas 
+        agregarMascotaAPropietario(gato, Santiago);
+        agregarMascotaAPropietario(perro, Santiago); // Nunca dejó de ser dueño.
+        agregarMascotaAPropietario(conejo, Daniel);
+        agregarMascotaAPropietario(loro, Daniel);
+        
+        // ------- [ ASIGNACIÓN OBJETOS ] ------- //
+        
+        //* VETERINARIO
+        
+        //* Agregar veterinario a consulta
+        asociarVeterinarioAConsulta(Juan, consulta1);
+        asociarVeterinarioAConsulta(Juan, consulta2);
+        
+        //* MASCOTAS
+        
+        //* Asociar mascota a consulta
+        asociarMascotaAConsulta(gato, consulta1);
+        asociarMascotaAConsulta(perro, consulta2);
+        
+         // ------- [ PROBAR CAMBIOS ] ------- //
+        
+        // * Remover mascota de consulta
+        removerMascotaDeConsulta(consulta1);
+        removerMascotaDeConsulta(consulta2);
+        
+        // * Remover mascota de falsa consulta
+        removerMascotaDeConsulta(consulta1);
+        
+        // * Cambiar mascota de consulta
+        cambiarMascotaDeConsulta(gato, consulta1);
+        cambiarMascotaDeConsulta(perro, consulta1);
+        
+        // ------- [ ASIGNACIÓN OBJETOS ] ------- //
+        
+       // * MEDICAMENTOS
+
+        //* Recetar medicamentos normalmente
+        recetarMedicamento(amoxicilina, consulta1);
+        recetarMedicamento(meloxicam, consulta1);
+        recetarMedicamento(omeprazol, consulta2);
+
+        //* Recetar medicamento duplicado
+        recetarMedicamento(amoxicilina, consulta1);
+
+
+         // ------- [ PROBAR CAMBIOS ] ------- //
+         
+        //* Cambiar dosis exitoso
+        cambiarDosisMedicamentos(consulta1, "Amoxicilina", 8);
+
+        //* Cambiar dosis con cantidad inválida (<= 0)
+        cambiarDosisMedicamentos(consulta1, "Amoxicilina", 0);
+        cambiarDosisMedicamentos(consulta1, "Amoxicilina", -3);
+
+        //* Cambiar dosis de medicamento inexistente en la consulta 
+        cambiarDosisMedicamentos(consulta1, "Ibuprofeno", 4);
+
+        //* Remover medicamento de consulta incorrecta
+        removerMedicamento(omeprazol, consulta1); // omeprazol está en consulta2, no en consulta1
+
+        //* Remover medicamento exitoso
+        removerMedicamento(meloxicam, consulta1);
+
+        //* Remover medicamento que ya fue eliminado
+        removerMedicamento(meloxicam, consulta1);
+       
     }
     
     public void cambiarPropietarioMascota(Mascota mascota, Propietario nuevoPropietario) {
@@ -236,8 +332,8 @@ public class Controlador {
 
     for (Medicamento m : consulta.getListaMedicamentos()) {
         if (m.getNombre().equalsIgnoreCase(nombreMedicamento)) {
+             m.setUnidades(nuevaDosis);
              vista.msgMedicamentoDosisCambiada(m, consulta);
-            m.setUnidades(nuevaDosis);
             return;
         }
     }

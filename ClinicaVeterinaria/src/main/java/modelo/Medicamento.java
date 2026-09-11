@@ -13,10 +13,9 @@ public class Medicamento {
     private int unidades;
     private Consulta consulta;
 
-    public Medicamento(String nombre, int unidades, Consulta consulta) {
+    public Medicamento(String nombre, int unidades) {
         this.nombre = nombre;
         this.unidades = unidades;
-        this.consulta = consulta;
     }
 
     public String getNombre() {

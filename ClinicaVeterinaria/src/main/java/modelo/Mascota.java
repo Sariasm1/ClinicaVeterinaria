@@ -12,9 +12,8 @@ public class Mascota extends Animal {
     private Propietario propietario;
     private int id;
 
-    public Mascota(Propietario propietario, int id, String nombre, int edad, String color) {
+    public Mascota(int id, String nombre, int edad, String color) {
         super(nombre, edad, color);
-        this.propietario = propietario;
         this.id = id;
     }
 

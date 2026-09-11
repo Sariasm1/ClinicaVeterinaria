@@ -16,10 +16,50 @@ public class Controlador {
     ClinicaVeterinaria vista = new ClinicaVeterinaria();
     
     public void iniciarSistema(){
+        // [ CREACIÓN OBJETOS ] //
+        
+        // ANIMALES
+        Mascota gato = new Mascota(1, "Princesa", 10, "Tigrillo");
+        Mascota perro = new Mascota(2, "Dante", 5, "Cafe");
+        Mascota loro = new Mascota(3, "Ronny", 12, "Verde");
+        Mascota conejo = new Mascota(4, "Sparky", 3, "Blanco");
+        
+        // PERSONAS
+        Propietario Santiago = new Propietario("Santiago", 19, "111", "Cartagena");
+        Propietario Daniel = new Propietario("Daniel", 23, "222", "Cartagena");
+        Veterinario Juan = new Veterinario(10, "Juan", 35, "333", "Cartagena");
+        
+        // [ ASIGNACIÓN OBJETOS ] //
+        
+        agregarMascotaAPropietario(gato, Santiago);
+        agregarMascotaAPropietario(perro, Santiago);
         
     }
     
+    public void cambiarPropietarioMascota(Mascota mascota, Propietario nuevoPropietario) {
+    Propietario antiguoPropietario = mascota.getPropietario();
+
+    if (antiguoPropietario == nuevoPropietario) {
+        vista.errorMascotaRepetida(nuevoPropietario, mascota);
+        return;
+    }
+    if (antiguoPropietario != null) {
+        antiguoPropietario.getListaMascotas().remove(mascota);
+    }
+
+    if (!nuevoPropietario.getListaMascotas().contains(mascota)) {
+        nuevoPropietario.addListaMascotas(mascota);
+    }
+
+    vista.msgMascotaAgregada(nuevoPropietario, mascota);
+    mascota.setPropietario(nuevoPropietario);
+}
+    
     public void agregarMascotaAPropietario(Mascota mascota, Propietario propietario){
+        if (mascota.getPropietario() != null && mascota.getPropietario() != propietario) {
+        vista.errorMascotaTieneOtroPropietario(propietario, mascota);
+        return;
+        }
        for (Mascota m : propietario.getListaMascotas()) {
         if (m.getId() == mascota.getId()) {
             vista.errorMascotaRepetida(propietario, mascota);
@@ -55,6 +95,46 @@ public class Controlador {
     propietario.getListaMascotas().remove(mascotaEncontrada);
     mascota.setPropietario(null);
 }
+    
+    public void asociarMascotaAConsulta(Mascota mascota, Consulta consulta) {
+    if (consulta.getMascota() != null) {
+        if (consulta.getMascota().getId() == mascota.getId()) {
+            vista.errorMascotaRepetidaEnConsulta(consulta, mascota);
+        } else {
+            vista.errorConsultaYaTieneMascota(consulta, consulta.getMascota());
+        }
+        return;
+    }
+
+    consulta.setMascota(mascota);
+    vista.msgMascotaAsignadaAConsulta(consulta, mascota);
+}
+
+    public void cambiarMascotaDeConsulta(Mascota nuevaMascota, Consulta consulta) {
+        Mascota mascotaActual = consulta.getMascota();
+
+        if (mascotaActual != null && mascotaActual.getId() == nuevaMascota.getId()) {
+            vista.errorMismaMascotaEnConsulta(consulta, nuevaMascota);
+            return;
+        }
+
+        consulta.setMascota(nuevaMascota);
+        vista.msgMascotaCambiadaEnConsulta(consulta, nuevaMascota);
+    }
+
+    public void removerMascotaDeConsulta(Consulta consulta) {
+
+        if (consulta.getMascota() == null) {
+            vista.errorConsultaSinMascota(consulta);
+            return;
+        }
+
+        Mascota mascotaRemovida = consulta.getMascota();
+
+
+        consulta.setMascota(null);
+        vista.msgMascotaRemovidaDeConsulta(consulta, mascotaRemovida);
+    }
     
     public void asociarVeterinarioAConsulta(Veterinario veterinario, Consulta consulta){
         for (Consulta c : veterinario.getListaConsultas()) {

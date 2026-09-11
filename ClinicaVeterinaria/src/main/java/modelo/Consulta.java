@@ -16,7 +16,6 @@ public class Consulta {
     private ArrayList<Medicamento> listaMedicamentos;
 
     public Consulta(Veterinario veterinario, int id, Mascota mascota) {
-        this.veterinario = veterinario;
         this.id = id;
         this.mascota = mascota;
         this.listaMedicamentos =  new ArrayList<>();

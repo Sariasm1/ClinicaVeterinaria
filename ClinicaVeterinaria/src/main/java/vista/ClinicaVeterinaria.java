@@ -21,6 +21,10 @@ public class ClinicaVeterinaria {
         System.out.println("El propietario "+ propietario.getNombre() + " ya es dueño de una mascota con id: "+ mascota.getId());
     }
     
+    public void errorMascotaTieneOtroPropietario(Propietario propietario, Mascota mascota){
+        System.out.println("No se puede asignar de dueño a "+propietario.getNombre()+" para la mascota "+mascota.getNombre()+"con id "+mascota.getId()+" porque ya "+mascota.getPropietario()+" es su dueño!");
+    }
+    
     public void errorMascotaNoEncontrada(Propietario propietario, Mascota mascota)
     {
         System.out.println("El propietario "+ propietario.getNombre() + " no es dueño de la mascota con id: "+ mascota.getId());
@@ -54,6 +58,41 @@ public class ClinicaVeterinaria {
     public void errorConsultaNoAsignada(Veterinario veterinario, Consulta consulta)
     {
         System.out.println("El veterinario "+ veterinario.getNombre() + " no esta atendiendo la consulta con id "+ consulta.getId());
+    }
+    
+    public void errorMascotaRepetidaEnConsulta(Consulta consulta, Mascota mascota)
+    {
+        System.out.println("La consulta con id: " + consulta.getId() + " ya tiene asignada a la mascota " + mascota.getNombre() + " con id: " + mascota.getId());
+    }
+
+    public void errorConsultaYaTieneMascota(Consulta consulta, Mascota mascota)
+    {
+        System.out.println("La consulta con id: " + consulta.getId() + " ya tiene una mascota asignada (" + mascota.getNombre() + " con id: " + mascota.getId() + ")");
+    }
+
+    public void errorMismaMascotaEnConsulta(Consulta consulta, Mascota mascota)
+    {
+        System.out.println("La consulta con id: " + consulta.getId() + " ya tiene registrada actualmente a la mascota " + mascota.getNombre() + " con id: " + mascota.getId());
+    }
+
+    public void errorConsultaSinMascota(Consulta consulta)
+    {
+        System.out.println("La consulta con id: " + consulta.getId() + " no tiene ninguna mascota asociada para remover");
+    }
+
+    public void msgMascotaAsignadaAConsulta(Consulta consulta, Mascota mascota)
+    {
+        System.out.println("La mascota " + mascota.getNombre() + " con id: " + mascota.getId() + " ahora esta asignada a la consulta con id: " + consulta.getId());
+    }
+
+    public void msgMascotaCambiadaEnConsulta(Consulta consulta, Mascota mascota)
+    {
+        System.out.println("Se cambio la mascota de la consulta con id: " + consulta.getId() + " por la mascota " + mascota.getNombre() + " con id: " + mascota.getId());
+    }
+
+    public void msgMascotaRemovidaDeConsulta(Consulta consulta, Mascota mascota)
+    {
+        System.out.println("La mascota " + mascota.getNombre() + " con id: " + mascota.getId() + " ya no esta asignada a la consulta con id: " + consulta.getId());
     }
     
     public void errorRecetarMedicamento(Medicamento medicamento, Consulta consulta)

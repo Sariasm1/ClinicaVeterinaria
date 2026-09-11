@@ -3,11 +3,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+import java.util.ArrayList;
 
 /**
  *
  * @author Estudiante
  */
-public class Propietario {
+public class Propietario extends Persona {
+    private ArrayList<Mascota> listaMascotas;
+
+    public Propietario(String nombre, int edad, String cedula, String direccion) {
+        super(nombre, edad, cedula, direccion);
+    }
+
+    public void addListaMascotas(Mascota m){
+        this.listaMascotas.add(m);
+    }
+    
+     public void removeListaMascotas(Mascota m){
+        this.listaMascotas.remove(m);
+    }
+     
+    public ArrayList<Mascota> getListaMascotas() {
+        return listaMascotas;
+    }
+
+    @Override
+    public String toString() {
+        return "Propietario{" + "listaMascotas=" + listaMascotas + '}';
+    }
+    
+    
     
 }

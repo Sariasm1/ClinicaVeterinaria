@@ -8,6 +8,8 @@ package modelo;
  *
  * @author Estudiante
  */
-public class Animal {
+public abstract class Animal {
+    private String nombre;
+    private int edad;
     
 }

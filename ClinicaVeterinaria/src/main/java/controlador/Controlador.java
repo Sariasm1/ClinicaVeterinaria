@@ -27,10 +27,11 @@ public class Controlador {
         }
     }
         /*
-        No realizo validaciones para getPropietario() de Mascota y validar si ya es el mismo dueño suponiendo 
+        No realicé validaciones para getPropietario() de Mascota y validar si ya es el mismo dueño suponiendo 
         que el sistema es automatico. 
         */
         
+        vista.msgMascotaAgregada(propietario, mascota);
         propietario.addListaMascotas(mascota);
         mascota.setPropietario(propietario);
     }
@@ -50,6 +51,7 @@ public class Controlador {
         return;
     }
     
+    vista.msgMascotaRemovida(propietario, mascota);
     propietario.getListaMascotas().remove(mascotaEncontrada);
     mascota.setPropietario(null);
 }
@@ -62,9 +64,10 @@ public class Controlador {
         }
     }
         /*
-        No realizo validaciones para getVeterinario() de Consulta y validar si ya es el mismo veterinario suponiendo 
+        No realicé validaciones para getVeterinario() de Consulta y validar si ya es el mismo veterinario suponiendo 
         que el sistema es automatico. 
         */
+        vista.msgVeterinarioAgregado(veterinario, consulta);
         veterinario.addListaConsultas(consulta);
         consulta.setVeterinario(veterinario);
     }
@@ -84,6 +87,7 @@ public class Controlador {
         return;
     }
     
+    vista.msgVeterinarioRemovido(veterinario, consulta);
     veterinario.getListaConsultas().remove(consultaEncontrada);
     consulta.setVeterinario(null);
 }
@@ -96,6 +100,7 @@ public class Controlador {
             return;
         }
     }
+        vista.msgMedicamentoRecetado(medicamento, consulta);
         consulta.addListaMedicamento(medicamento);
         medicamento.setConsulta(consulta);
     }
@@ -115,6 +120,7 @@ public class Controlador {
         return;
     }
 
+    vista.msgMedicamentoRemovido(medicamento, consulta);
     consulta.getListaMedicamentos().remove(medEncontrado);
     medicamento.setConsulta(null);
 }
@@ -125,9 +131,9 @@ public class Controlador {
         return;
     }
 
-    // 2. Buscar el medicamento y actualizar
     for (Medicamento m : consulta.getListaMedicamentos()) {
         if (m.getNombre().equalsIgnoreCase(nombreMedicamento)) {
+             vista.msgMedicamentoDosisCambiada(m, consulta);
             m.setUnidades(nuevaDosis);
             return;
         }

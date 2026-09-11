@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package vista;
+import controlador.*;
 
 /**
  *
@@ -11,7 +12,7 @@ package vista;
 public class main {
     
      public static void main(String[] args) {
-        System.out.println("Hello World!");
-        System.out.println("Hola");
+        Controlador controlador = new Controlador();
+        controlador.iniciarSistema();
     }
 }

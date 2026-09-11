@@ -14,6 +14,11 @@ import vista.*;
 public class Controlador {
     
     ClinicaVeterinaria vista = new ClinicaVeterinaria();
+
+    public Controlador() {
+    }
+    
+    
     
     public void iniciarSistema(){
         // [ CREACIÓN OBJETOS ] //
@@ -29,11 +34,29 @@ public class Controlador {
         Propietario Daniel = new Propietario("Daniel", 23, "222", "Cartagena");
         Veterinario Juan = new Veterinario(10, "Juan", 35, "333", "Cartagena");
         
+        // CONSULTA
+        Consulta consulta1 = new Consulta(1);
+        Consulta consulta2 = new Consulta(2);
+        
         // [ ASIGNACIÓN OBJETOS ] //
         
         agregarMascotaAPropietario(gato, Santiago);
         agregarMascotaAPropietario(perro, Santiago);
+        agregarMascotaAPropietario(gato, Daniel);
+        agregarMascotaAPropietario(loro, Daniel);
         
+        // [ PROBAR CAMBIOS ] //
+        
+        //* Cambiar a mismo dueño
+        cambiarPropietarioMascota(gato, Santiago);
+        cambiarPropietarioMascota(loro, Daniel);
+        
+        //* Cambiar a nuevos dueños
+        cambiarPropietarioMascota(loro, Santiago);
+        cambiarPropietarioMascota(gato, Daniel);
+        
+        //* Remover mascota de falso dueño
+        removerMascotaPropietario(gato, Santiago);
     }
     
     public void cambiarPropietarioMascota(Mascota mascota, Propietario nuevoPropietario) {

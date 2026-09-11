@@ -13,6 +13,7 @@ public class Propietario extends Persona {
     private ArrayList<Mascota> listaMascotas;
 
     public Propietario(String nombre, int edad, String cedula, String direccion) {
+        listaMascotas = new ArrayList<>();
         super(nombre, edad, cedula, direccion);
     }
 
@@ -28,11 +29,6 @@ public class Propietario extends Persona {
         return listaMascotas;
     }
 
-    @Override
-    public String toString() {
-        return "Propietario{" + "listaMascotas=" + listaMascotas + '}';
-    }
-    
     
     
 }

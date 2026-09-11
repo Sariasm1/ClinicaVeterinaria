@@ -18,16 +18,16 @@ public class ClinicaVeterinaria {
     
     public void errorMascotaRepetida(Propietario propietario, Mascota mascota)
     {
-        System.out.println("El propietario "+ propietario.getNombre() + " ya es dueño de una mascota con id: "+ mascota.getId());
+        System.out.println("El propietario "+ propietario.getNombre() + " ya es dueño de la mascota "+ mascota.getNombre()+ " con id: "+ mascota.getId());
     }
     
     public void errorMascotaTieneOtroPropietario(Propietario propietario, Mascota mascota){
-        System.out.println("No se puede asignar de dueño a "+propietario.getNombre()+" para la mascota "+mascota.getNombre()+"con id "+mascota.getId()+" porque ya "+mascota.getPropietario()+" es su dueño!");
+        System.out.println("No se puede asignar de dueño a "+propietario.getNombre()+" para la mascota "+mascota.getNombre()+" con id "+mascota.getId()+" porque ya "+mascota.getPropietario().getNombre()+" es su dueño!");
     }
     
     public void errorMascotaNoEncontrada(Propietario propietario, Mascota mascota)
     {
-        System.out.println("El propietario "+ propietario.getNombre() + " no es dueño de la mascota con id: "+ mascota.getId());
+        System.out.println("El propietario "+ propietario.getNombre() + " no es dueño de la mascota "+ mascota.getNombre()+ " con id: "+ mascota.getId());
     }
     
     public void msgMascotaAgregada(Propietario propietario, Mascota mascota)

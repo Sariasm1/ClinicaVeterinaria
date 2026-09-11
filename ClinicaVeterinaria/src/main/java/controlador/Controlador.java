@@ -35,6 +35,25 @@ public class Controlador {
         mascota.setPropietario(propietario);
     }
     
+    public void removerMascotaPropietario(Mascota mascota, Propietario propietario) {
+    Mascota mascotaEncontrada = null;
+
+    for (Mascota m : propietario.getListaMascotas()) {
+        if (m.getId() == mascota.getId()) {
+            mascotaEncontrada = m;
+            break;
+        }
+    }
+
+    if (mascotaEncontrada == null) {
+        vista.errorMascotaNoEncontrada(propietario, mascota);
+        return;
+    }
+    
+    propietario.getListaMascotas().remove(mascotaEncontrada);
+    mascota.setPropietario(null);
+}
+    
     public void asociarVeterinarioAConsulta(Veterinario veterinario, Consulta consulta){
         for (Consulta c : veterinario.getListaConsultas()) {
         if (c.getId() == consulta.getId()) {
@@ -50,6 +69,26 @@ public class Controlador {
         consulta.setVeterinario(veterinario);
     }
     
+    public void removerVeterinarioDeConsulta(Veterinario veterinario, Consulta consulta) {
+    Consulta consultaEncontrada = null;
+
+    for (Consulta c : veterinario.getListaConsultas()) {
+        if (c.getId() == consulta.getId()) {
+            consultaEncontrada = c;
+            break;
+        }
+    }
+
+    if (consultaEncontrada == null) {
+        vista.errorConsultaNoAsignada(veterinario, consulta);
+        return;
+    }
+    
+    veterinario.getListaConsultas().remove(consultaEncontrada);
+    consulta.setVeterinario(null);
+}
+    
+    
     public void recetarMedicamento(Medicamento medicamento, Consulta consulta){
         for (Medicamento m : consulta.getListaMedicamentos()) {
         if (m.getNombre().equalsIgnoreCase(medicamento.getNombre())) {
@@ -60,6 +99,42 @@ public class Controlador {
         consulta.addListaMedicamento(medicamento);
         medicamento.setConsulta(consulta);
     }
+    
+    public void removerMedicamento(Medicamento medicamento, Consulta consulta) {
+    Medicamento medEncontrado = null;
+
+    for (Medicamento m : consulta.getListaMedicamentos()) {
+        if (m.getNombre().equalsIgnoreCase(medicamento.getNombre())) {
+            medEncontrado = m;
+            break;
+        }
+    }
+
+    if (medEncontrado == null) {
+        vista.errorMedicamentoNoEncontrado(medicamento, consulta);
+        return;
+    }
+
+    consulta.getListaMedicamentos().remove(medEncontrado);
+    medicamento.setConsulta(null);
+}
+
+   public void cambiarDosisMedicamentos(Consulta consulta, String nombreMedicamento, int nuevaDosis) {
+    if (nuevaDosis <= 0) {
+        vista.errorDosisInvalida();
+        return;
+    }
+
+    // 2. Buscar el medicamento y actualizar
+    for (Medicamento m : consulta.getListaMedicamentos()) {
+        if (m.getNombre().equalsIgnoreCase(nombreMedicamento)) {
+            m.setUnidades(nuevaDosis);
+            return;
+        }
+    }
+
+    vista.errorMedicamentoNoEncontradoPorString(nombreMedicamento, consulta);
+}
     
     
  }

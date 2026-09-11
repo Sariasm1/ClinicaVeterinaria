@@ -10,7 +10,6 @@ import java.util.ArrayList;
  * @author Estudiante
  */
 public class Veterinario extends Persona {
-    private ArrayList<Mascota> listaMascotas;
     private ArrayList<Consulta> listaConsultas;
     private int tarjetaProfesional;
 
@@ -19,12 +18,16 @@ public class Veterinario extends Persona {
         this.tarjetaProfesional = tarjetaProfesional; 
     }
 
-    public ArrayList<Mascota> getListaMascotas() {
-        return listaMascotas;
-    }
-
     public ArrayList<Consulta> getListaConsultas() {
         return listaConsultas;
+    }
+    
+    public void addListaConsultas(Consulta c){
+        listaConsultas.add(c);
+    }
+    
+    public void removeListaConsultas(Consulta c){
+        listaConsultas.remove(c);
     }
 
     public int getTarjetaProfesional() {
@@ -35,19 +38,12 @@ public class Veterinario extends Persona {
         this.tarjetaProfesional = tarjetaProfesional;
     }
 
-    public void addListaMascotas(Mascota m){
-        listaMascotas.add(m);
-    }
-    
-    public void removeListaMascotas(Mascota m){
-        listaMascotas.remove(m);
-    }
-
     @Override
     public String toString() {
-        return "Veterinario{" + "listaMascotas=" + listaMascotas + ", listaConsultas=" + listaConsultas + ", tarjetaProfesional=" + tarjetaProfesional + '}';
+        return "Veterinario{" + "listaConsultas=" + listaConsultas + ", tarjetaProfesional=" + tarjetaProfesional + '}';
     }
-    
-    
+
+
+   
     
 }

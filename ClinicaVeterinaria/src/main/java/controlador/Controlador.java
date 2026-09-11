@@ -20,12 +20,35 @@ public class Controlador {
     }
     
     public void agregarMascotaAPropietario(Mascota mascota, Propietario propietario){
-        if(propietario.getListaMascotas().contains(mascota))
-        {
-            return ;
+       for (Mascota m : propietario.getListaMascotas()) {
+        if (m.getId() == mascota.getId()) {
+            vista.errorMascotaRepetida(propietario, mascota);
+            return;
         }
+    }
+        /*
+        No realizo validaciones para getPropietario() de Mascota y validar si ya es el mismo dueño suponiendo 
+        que el sistema es automatico. 
+        */
+        
         propietario.addListaMascotas(mascota);
         mascota.setPropietario(propietario);
+    }
+    
+    public void asociarVeterinarioAConsulta(Veterinario veterinario, Consulta consulta){
+        for (Consulta c : veterinario.getListaConsultas()) {
+        if (c.getId() == consulta.getId()) {
+            vista.errorAsociarVeterinarioEnConsulta(veterinario, consulta);
+            return;
+        }
+    }
+        /*
+        No realizo validaciones para getVeterinario() de Consulta y validar si ya es el mismo veterinario suponiendo 
+        que el sistema es automatico. 
+        */
+        veterinario.addListaConsultas(consulta);
+        consulta.setVeterinario(veterinario);
+    }
     }
     
     

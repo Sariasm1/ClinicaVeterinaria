@@ -19,6 +19,7 @@ public class Controlador {
     public Controlador(Veterinaria veterinaria, ClinicaVeterinaria vista) {
         this.veterinaria = veterinaria;
         this.vista = vista;
+        vista.setControlador(this);
     }
     
     
@@ -156,6 +157,16 @@ public class Controlador {
         //* Remover medicamento que ya fue eliminado
         removerMedicamento(meloxicam, consulta1);
        
+    }
+    
+    public String mostrarPropietariosConMascota(){
+         for (Propietario p : veterinaria.getListaPropietarios()) {
+              if (p.getListaMascotas() != null) {
+                  for (Mascota m: p.getListaMascotas()){
+                      return "LaS mascota de "+p.getNombre()+" se llama "+m.getNombre();
+                  }
+              }
+         }
     }
     
     public Veterinario registrarVeterinario(int tarjetaProfesional, String nombre, int edad, String cedula, String direccion){

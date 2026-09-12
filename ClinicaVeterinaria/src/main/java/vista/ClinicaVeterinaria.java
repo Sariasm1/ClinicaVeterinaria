@@ -4,16 +4,27 @@
 
 package vista;
 import modelo.*;
+import controlador.*;
 
 /**
  *
  * @author Estudiante
  */
 public class ClinicaVeterinaria {
+    private Controlador controlador;
 
     public ClinicaVeterinaria() {
     }
+
+    public void setControlador(Controlador controlador) {
+        this.controlador = controlador;
+    }
     
+    
+    
+    public void mostrarPropietariosConMascota(){
+        
+    }
     
     
     public void errorMascotaRepetida(Propietario propietario, Mascota mascota)

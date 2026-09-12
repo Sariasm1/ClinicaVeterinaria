@@ -167,6 +167,7 @@ public class Controlador {
     }
     if (antiguoPropietario != null) {
         antiguoPropietario.getListaMascotas().remove(mascota);
+        veterinaria.removeListaPropietarios(antiguoPropietario);
     }
 
     if (!nuevoPropietario.getListaMascotas().contains(mascota)) {
@@ -175,6 +176,7 @@ public class Controlador {
 
     vista.msgMascotaAgregada(nuevoPropietario, mascota);
     mascota.setPropietario(nuevoPropietario);
+    veterinaria.addListaPropietarios(nuevoPropietario);
 }
     
     public void agregarMascotaAPropietario(Mascota mascota, Propietario propietario){
@@ -195,6 +197,7 @@ public class Controlador {
         
         vista.msgMascotaAgregada(propietario, mascota);
         propietario.addListaMascotas(mascota);
+        veterinaria.addListaPropietarios(propietario);
         mascota.setPropietario(propietario);
     }
     

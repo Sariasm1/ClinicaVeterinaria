@@ -4,7 +4,6 @@
 
 package vista;
 import modelo.*;
-import controlador.*;
 import java.util.ArrayList;
 
 /**
@@ -12,15 +11,10 @@ import java.util.ArrayList;
  * @author Estudiante
  */
 public class ClinicaVeterinaria {
-    private Controlador controlador;
 
     public ClinicaVeterinaria() {
     }
 
-    public void setControlador(Controlador controlador) {
-        this.controlador = controlador;
-    }
-    
     
     
     public void mostrarPropietariosConMascota(ArrayList<Propietario> propietarios) {
@@ -30,7 +24,32 @@ public class ClinicaVeterinaria {
             System.out.println("  - " + m.getNombre() + " (ID: " + m.getId() + ")");
         }
     }
+    
 }
+    
+    public void mostrarConsultas(ArrayList<Consulta> consultas) {
+    System.out.println("=== LISTADO DE CONSULTAS ===");
+    for (Consulta c : consultas) {
+        System.out.println("Consulta ID: " + c.getId());
+        System.out.println("  - Mascota: " + c.getMascota().getNombre());
+        System.out.println("  - Veterinario: " + c.getVeterinario().getNombre());
+    }
+}
+    public void mostrarConsultasDesdeStrings(ArrayList<String> resumenConsultas) {
+    System.out.println("=== LISTADO DE CONSULTAS ===");
+    for (String linea : resumenConsultas) {
+        System.out.println(linea);
+    }
+}
+    
+    public void mostrarMedicamentosDeConsulta(int idConsulta, String nombreMascota, ArrayList<Medicamento> listaMedicamentos) {
+    System.out.println("=== MEDICAMENTOS RECETADOS ===");
+    System.out.println("Consulta ID: " + idConsulta + " - Paciente: " + nombreMascota);
+    for (Medicamento m : listaMedicamentos) {
+        System.out.println("  * " + m.getNombre() + " - Dosis/Unidades: " + m.getUnidades());
+    }
+}
+    
     
     public void errorMascotaRepetida(Propietario propietario, Mascota mascota)
     {

@@ -20,7 +20,6 @@ public class Controlador {
     public Controlador(Veterinaria veterinaria, ClinicaVeterinaria vista) {
         this.veterinaria = veterinaria;
         this.vista = vista;
-        vista.setControlador(this);
     }
     
     
@@ -162,6 +161,8 @@ public class Controlador {
         // Mostrar propietarios con mascotas
         
         mostrarPropietariosConMascota();
+        mostrarConsultas();
+        mostrarMedicamentosRecetados();
        
     }
     
@@ -177,6 +178,49 @@ public class Controlador {
 
     // Le entrega la lista lista y sin duplicados a la vista
     vista.mostrarPropietariosConMascota(unicosConMascota);
+}
+    public void mostrarConsultas() {
+    ArrayList<Consulta> consultas = veterinaria.getListaConsultas();
+
+    if (consultas == null || consultas.isEmpty()) {
+        return;
+    }
+
+    ArrayList<String> lineasConsultas = new ArrayList<>();
+
+    for (Consulta c : consultas) {
+        String nombreMascota = (c.getMascota() != null) ? c.getMascota().getNombre() : "Sin asignar";
+        String nombreVet = (c.getVeterinario() != null) ? c.getVeterinario().getNombre() : "Sin asignar";
+
+        lineasConsultas.add("Consulta ID: " + c.getId() + "\n  - Mascota: " + nombreMascota + "\n  - Veterinario: " + nombreVet);
+    }
+
+    vista.mostrarConsultasDesdeStrings(lineasConsultas);
+}
+
+    public void mostrarMedicamentosRecetados() {
+        ArrayList<Consulta> consultas = veterinaria.getListaConsultas();
+
+    if (consultas == null || consultas.isEmpty()) {
+        return;
+    }
+
+    ArrayList<Consulta> conMed = new ArrayList<>();
+    for (Consulta c : consultas) {
+        if (c.getListaMedicamentos() != null && !c.getListaMedicamentos().isEmpty()) {
+            conMed.add(c);
+        }
+    }
+
+    if (conMed.isEmpty()) {
+        return;
+    }
+
+    for (Consulta c : conMed) {
+        String nombreMascota = (c.getMascota() != null) ? c.getMascota().getNombre() : "Sin asignar";
+
+        vista.mostrarMedicamentosDeConsulta(c.getId(), nombreMascota, c.getListaMedicamentos());
+    }
 }
     
     public Veterinario registrarVeterinario(int tarjetaProfesional, String nombre, int edad, String cedula, String direccion){

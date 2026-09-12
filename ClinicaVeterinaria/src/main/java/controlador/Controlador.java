@@ -158,7 +158,7 @@ public class Controlador {
         //* Remover medicamento que ya fue eliminado
         removerMedicamento(meloxicam, consulta1);
         
-        // Mostrar propietarios con mascotas
+        // Mostrar metodos generales.
         
         mostrarPropietariosConMascota();
         mostrarConsultas();
@@ -170,15 +170,13 @@ public class Controlador {
     ArrayList<Propietario> unicosConMascota = new ArrayList<>();
 
     for (Propietario p : veterinaria.getListaPropietarios()) {
-        // Valida que tenga mascotas y que no esté repetido en la lista
         if (p.getListaMascotas() != null && !p.getListaMascotas().isEmpty() && !unicosConMascota.contains(p)) {
             unicosConMascota.add(p);
         }
     }
-
-    // Le entrega la lista lista y sin duplicados a la vista
     vista.mostrarPropietariosConMascota(unicosConMascota);
 }
+   
     public void mostrarConsultas() {
     ArrayList<Consulta> consultas = veterinaria.getListaConsultas();
 

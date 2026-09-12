@@ -16,6 +16,7 @@ public class Veterinaria {
     private ArrayList<Propietario> listaPropietarios;
     private ArrayList<Veterinario> listaVeterinarios;
     private ArrayList<Consulta> listaConsultas;   
+    
 
     public Veterinaria(String nombreVeterinaria, int nit, String direccion) {
         this.nombreVeterinaria = nombreVeterinaria;

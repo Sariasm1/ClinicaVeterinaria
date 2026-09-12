@@ -18,6 +18,7 @@ public class ClinicaVeterinaria {
     
     
     public void mostrarPropietariosConMascota(ArrayList<Propietario> propietarios) {
+    System.out.println("=== LISTADO DE PROPIETARIOS ===");
     for (Propietario p : propietarios) {
         System.out.println("Propietario: " + p.getNombre());
         for (Mascota m : p.getListaMascotas()) {

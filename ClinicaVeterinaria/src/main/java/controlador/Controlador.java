@@ -14,8 +14,11 @@ import vista.*;
 public class Controlador {
     
     ClinicaVeterinaria vista = new ClinicaVeterinaria();
+    Veterinaria veterinaria = new Veterinaria();
 
-    public Controlador() {
+    public Controlador(Veterinaria veterinaria, ClinicaVeterinaria vista) {
+        this.veterinaria = veterinaria;
+        this.vista = vista;
     }
     
     

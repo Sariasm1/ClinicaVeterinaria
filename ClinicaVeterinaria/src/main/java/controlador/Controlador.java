@@ -35,11 +35,11 @@ public class Controlador {
         // PERSONAS
         Propietario Santiago = new Propietario("Santiago", 19, "111", "Cartagena");
         Propietario Daniel = new Propietario("Daniel", 23, "222", "Cartagena");
-        Veterinario Juan = new Veterinario(10, "Juan", 35, "333", "Cartagena");
+        Veterinario Juan = registrarVeterinario(10, "Juan", 35, "333", "Cartagena");
         
         // CONSULTA
-        Consulta consulta1 = new Consulta(50);
-        Consulta consulta2 = new Consulta(60);
+        Consulta consulta1 = registrarConsulta(50);
+        Consulta consulta2 = registrarConsulta(60);
         
         // MEDICAMENTOS
         
@@ -157,6 +157,20 @@ public class Controlador {
         removerMedicamento(meloxicam, consulta1);
        
     }
+    
+    public Veterinario registrarVeterinario(int tarjetaProfesional, String nombre, int edad, String cedula, String direccion){
+        Veterinario veterinario = new Veterinario(tarjetaProfesional, nombre, edad, cedula, direccion);
+        veterinario.setVeterinaria(veterinaria);
+        veterinaria.addListaVeterinarios(veterinario);
+        return veterinario;
+    }
+    
+    public Consulta registrarConsulta(int id){
+        Consulta consulta = new Consulta(id);
+        veterinaria.addListaConsultas(consulta);
+        return consulta;
+    }
+    
     
     public void cambiarPropietarioMascota(Mascota mascota, Propietario nuevoPropietario) {
     Propietario antiguoPropietario = mascota.getPropietario();

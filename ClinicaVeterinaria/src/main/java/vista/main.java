@@ -4,6 +4,7 @@
  */
 package vista;
 import controlador.*;
+import modelo.*;
 
 /**
  *
@@ -12,7 +13,10 @@ import controlador.*;
 public class main {
     
      public static void main(String[] args) {
-        Controlador controlador = new Controlador();
+        Veterinaria veterinaria = new Veterinaria("Patitas", 123, "Cartagena");
+        ClinicaVeterinaria vista = new ClinicaVeterinaria();
+        Controlador controlador = new Controlador(veterinaria, vista);
+        /////
         controlador.iniciarSistema();
     }
 }

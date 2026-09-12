@@ -12,12 +12,23 @@ import java.util.ArrayList;
 public class Veterinario extends Persona {
     private ArrayList<Consulta> listaConsultas;
     private int tarjetaProfesional;
+    private Veterinaria veterinaria;
 
     public Veterinario(int tarjetaProfesional, String nombre, int edad, String cedula, String direccion) {
         super(nombre, edad, cedula, direccion);
         this.tarjetaProfesional = tarjetaProfesional; 
         listaConsultas = new ArrayList<>();
     }
+
+    public Veterinaria getVeterinaria() {
+        return veterinaria;
+    }
+
+    public void setVeterinaria(Veterinaria veterinaria) {
+        this.veterinaria = veterinaria;
+    }
+    
+    
 
     public ArrayList<Consulta> getListaConsultas() {
         return listaConsultas;

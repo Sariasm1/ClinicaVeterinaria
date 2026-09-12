@@ -5,6 +5,7 @@
 package vista;
 import modelo.*;
 import controlador.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,10 +23,14 @@ public class ClinicaVeterinaria {
     
     
     
-    public void mostrarPropietariosConMascota(){
-        
+    public void mostrarPropietariosConMascota(ArrayList<Propietario> propietarios) {
+    for (Propietario p : propietarios) {
+        System.out.println("Propietario: " + p.getNombre());
+        for (Mascota m : p.getListaMascotas()) {
+            System.out.println("  - " + m.getNombre() + " (ID: " + m.getId() + ")");
+        }
     }
-    
+}
     
     public void errorMascotaRepetida(Propietario propietario, Mascota mascota)
     {

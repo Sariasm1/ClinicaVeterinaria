@@ -5,6 +5,7 @@
 package controlador;
 import modelo.*;
 import vista.*;
+import java.util.ArrayList;
 
 
 /**
@@ -36,6 +37,7 @@ public class Controlador {
         // PERSONAS
         Propietario Santiago = new Propietario("Santiago", 19, "111", "Cartagena");
         Propietario Daniel = new Propietario("Daniel", 23, "222", "Cartagena");
+        Propietario Jose = new Propietario("Jose", 15, "333", "Cartagena");
         Veterinario Juan = registrarVeterinario(10, "Juan", 35, "333", "Cartagena");
         
         // CONSULTA
@@ -93,7 +95,7 @@ public class Controlador {
         //* Agregar mascotas 
         agregarMascotaAPropietario(gato, Santiago);
         agregarMascotaAPropietario(perro, Santiago); // Nunca dejó de ser dueño.
-        agregarMascotaAPropietario(conejo, Daniel);
+        agregarMascotaAPropietario(conejo, Jose);
         agregarMascotaAPropietario(loro, Daniel);
         
         // ------- [ ASIGNACIÓN OBJETOS ] ------- //
@@ -156,18 +158,26 @@ public class Controlador {
 
         //* Remover medicamento que ya fue eliminado
         removerMedicamento(meloxicam, consulta1);
+        
+        // Mostrar propietarios con mascotas
+        
+        mostrarPropietariosConMascota();
        
     }
     
-    public String mostrarPropietariosConMascota(){
-         for (Propietario p : veterinaria.getListaPropietarios()) {
-              if (p.getListaMascotas() != null) {
-                  for (Mascota m: p.getListaMascotas()){
-                      return "LaS mascota de "+p.getNombre()+" se llama "+m.getNombre();
-                  }
-              }
-         }
+   public void mostrarPropietariosConMascota() {
+    ArrayList<Propietario> unicosConMascota = new ArrayList<>();
+
+    for (Propietario p : veterinaria.getListaPropietarios()) {
+        // Valida que tenga mascotas y que no esté repetido en la lista
+        if (p.getListaMascotas() != null && !p.getListaMascotas().isEmpty() && !unicosConMascota.contains(p)) {
+            unicosConMascota.add(p);
+        }
     }
+
+    // Le entrega la lista lista y sin duplicados a la vista
+    vista.mostrarPropietariosConMascota(unicosConMascota);
+}
     
     public Veterinario registrarVeterinario(int tarjetaProfesional, String nombre, int edad, String cedula, String direccion){
         Veterinario veterinario = new Veterinario(tarjetaProfesional, nombre, edad, cedula, direccion);
